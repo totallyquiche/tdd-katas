@@ -1,0 +1,19 @@
+{
+  "name": "tdd-katas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Q.Q <you2qq@disroot.org>",
+  "license": "AGPL-3.0-or-later",
+  "description": "",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true
+  }
+}
