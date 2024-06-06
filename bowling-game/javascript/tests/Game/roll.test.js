@@ -10,16 +10,24 @@ describe("Game.roll should", () => {
     expect(game.roll(0)).not.toBeDefined();
   });
 
+  test("only accepts one argument", () => {
+    const expectedError = new Error("expected only one argument");
+
+    expect(() => {
+      game.roll(0, 1);
+    }).toThrow(expectedError);
+  });
+
   test("only accept an integer", () => {
     const expectedError = new TypeError(
       "expected an integer but didn't get one"
     );
 
-    const invalidParameters = [null, 0.1, [], {}, ""];
+    const invalidArguments = [null, 0.1, [], {}, ""];
 
-    invalidParameters.forEach((parameter) => {
+    invalidArguments.forEach((argument) => {
       expect(() => {
-        game.roll(parameter);
+        game.roll(argument);
       }).toThrow(expectedError);
     });
   });
