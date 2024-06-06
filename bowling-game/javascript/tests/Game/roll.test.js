@@ -8,7 +8,7 @@ describe("Game.roll should", () => {
     expect(game.roll).toBeInstanceOf(Function);
   });
 
-  test("should not return anything", () => {
+  test("not return anything", () => {
     expect(game.roll(0)).not.toBeDefined();
   });
 
@@ -50,7 +50,7 @@ describe("Game.roll should", () => {
     expect(() => game.roll(6)).toThrow(expectedError);
   });
 
-  test("should advance the frame after being called twice", () => {
+  test("advance the frame after being called twice", () => {
     expect(game.currentFrame).toBe(0);
 
     game.roll(0);
@@ -62,14 +62,14 @@ describe("Game.roll should", () => {
     expect(game.currentFrame).toBe(1);
   });
 
-  test("should increase score by argument value", () => {
+  test("increase score by argument value", () => {
     game.roll(0);
     game.roll(5);
 
     expect(game.score()).toBe(5);
   });
 
-  test("should decrease number of pins by argument value", () => {
+  test("decrease number of pins by argument value", () => {
     const originalCurrentPins = game.currentPins;
 
     game.roll(5);
