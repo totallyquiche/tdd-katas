@@ -1,4 +1,6 @@
 module.exports = class Game {
+  #score = 0;
+
   roll(number) {
     if (!Number.isInteger(number)) {
       throw new TypeError("expected an integer but didn't get one");
@@ -14,6 +16,6 @@ module.exports = class Game {
       throw new Error("expected no arguments but got at least one");
     }
 
-    return 0;
+    return this.#score;
   }
 };
