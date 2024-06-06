@@ -13,4 +13,8 @@ describe("Game.score should", () => {
 
     expect(() => game.score(0)).toThrow(expectedError);
   });
+
+  test("should return an integer", () => {
+    expect(Number.isInteger(game.score())).toBe(true);
+  });
 });

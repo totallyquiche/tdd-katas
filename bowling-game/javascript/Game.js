@@ -13,5 +13,7 @@ module.exports = class Game {
     if (arguments.length > 0) {
       throw new Error("expected no arguments but got at least one");
     }
+
+    return 0;
   }
 };
