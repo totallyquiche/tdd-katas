@@ -38,6 +38,14 @@ describe("Game.roll should", () => {
     expect(() => game.roll(-1)).toThrow(expectedError);
   });
 
+  test("not accept numbers larger than 10", () => {
+    const expectedError = new RangeError(
+      "expected a number no larger than 10 but got one"
+    );
+
+    expect(() => game.roll(11)).toThrow(expectedError);
+  });
+
   test("should advance the frame after being called twice", () => {
     expect(game.currentFrame).toBe(0);
 

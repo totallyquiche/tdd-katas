@@ -14,6 +14,10 @@ module.exports = class Game {
       );
     }
 
+    if (number > 10) {
+      throw new RangeError("expected a number no larger than 10 but got one");
+    }
+
     if (arguments.length > 1) {
       throw new Error("expected only one argument");
     }
