@@ -7,6 +7,20 @@ describe("Game.roll should", () => {
   });
 
   test("should not return anything", () => {
-    expect(game.roll()).not.toBeDefined();
+    expect(game.roll(0)).not.toBeDefined();
+  });
+
+  test("only accept an integer", () => {
+    const expectedError = new TypeError(
+      "expected an integer but didn't get one"
+    );
+
+    const invalidParameters = [null, 0.1, [], {}, ""];
+
+    invalidParameters.forEach((parameter) => {
+      expect(() => {
+        game.roll(parameter);
+      }).toThrow(expectedError);
+    });
   });
 });
