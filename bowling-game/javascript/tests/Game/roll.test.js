@@ -38,9 +38,9 @@ describe("Game.roll should", () => {
     expect(() => game.roll(-1)).toThrow(expectedError);
   });
 
-  test("not accept numbers larger than 10", () => {
+  test("not accept numbers larger than current pins", () => {
     const expectedError = new RangeError(
-      "expected a number no larger than 10 but got one"
+      "expected a number no larger than the number of current pins but got one"
     );
 
     expect(() => game.roll(11)).toThrow(expectedError);

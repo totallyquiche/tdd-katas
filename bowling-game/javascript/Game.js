@@ -2,6 +2,7 @@ module.exports = class Game {
   #score = [];
   #currentRoll = 0;
   currentFrame = 0;
+  currentPins = 10;
 
   roll(number) {
     if (!Number.isInteger(number)) {
@@ -14,8 +15,10 @@ module.exports = class Game {
       );
     }
 
-    if (number > 10) {
-      throw new RangeError("expected a number no larger than 10 but got one");
+    if (number > this.currentPins) {
+      throw new RangeError(
+        "expected a number no larger than the number of current pins but got one"
+      );
     }
 
     if (arguments.length > 1) {
