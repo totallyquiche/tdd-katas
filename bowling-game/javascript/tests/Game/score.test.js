@@ -25,4 +25,12 @@ describe("Game.score should", () => {
 
     expect(game.score()).toBe(5);
   });
+
+  test("return the score across all frames", () => {
+    game.roll(0);
+    game.roll(1);
+    game.roll(2);
+
+    expect(game.score()).toBe(3);
+  });
 });
