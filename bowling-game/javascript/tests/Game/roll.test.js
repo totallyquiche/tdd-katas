@@ -30,6 +30,14 @@ describe("Game.roll should", () => {
     });
   });
 
+  test("not accept negative numbers", () => {
+    const expectedError = new RangeError(
+      "expected a non-negative number but got a negative number"
+    );
+
+    expect(() => game.roll(-1)).toThrow(expectedError);
+  });
+
   test("should advance the frame after being called twice", () => {
     expect(game.currentFrame).toBe(0);
 

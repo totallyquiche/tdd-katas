@@ -8,6 +8,12 @@ module.exports = class Game {
       throw new TypeError("expected an integer but didn't get one");
     }
 
+    if (number < 0) {
+      throw new RangeError(
+        "expected a non-negative number but got a negative number"
+      );
+    }
+
     if (arguments.length > 1) {
       throw new Error("expected only one argument");
     }
