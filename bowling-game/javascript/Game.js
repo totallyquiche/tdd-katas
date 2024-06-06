@@ -9,5 +9,9 @@ module.exports = class Game {
     }
   }
 
-  score() {}
+  score() {
+    if (arguments.length > 0) {
+      throw new Error("expected no arguments but got at least one");
+    }
+  }
 };
