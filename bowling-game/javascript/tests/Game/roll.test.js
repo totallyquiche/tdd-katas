@@ -1,6 +1,8 @@
 describe("Game.roll should", () => {
   const Game = require("../../Game");
-  const game = new Game();
+  let game;
+
+  beforeEach(() => (game = new Game()));
 
   test("be a function", () => {
     expect(game.roll).toBeInstanceOf(Function);
@@ -26,5 +28,17 @@ describe("Game.roll should", () => {
     invalidArguments.forEach((argument) => {
       expect(() => game.roll(argument)).toThrow(expectedError);
     });
+  });
+
+  test("should advance the frame after being called twice", () => {
+    expect(game.currentFrame).toBe(0);
+
+    game.roll(0);
+
+    expect(game.currentFrame).toBe(0);
+
+    game.roll(0);
+
+    expect(game.currentFrame).toBe(1);
   });
 });
