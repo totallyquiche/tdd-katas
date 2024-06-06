@@ -8,4 +8,6 @@ module.exports = class Game {
       throw new Error("expected only one argument");
     }
   }
+
+  score() {}
 };
