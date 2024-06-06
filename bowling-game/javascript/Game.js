@@ -1,8 +1,10 @@
 module.exports = class Game {
   #score = [];
   #currentRoll = 0;
+  #maxPins = 10;
+
   currentFrame = 0;
-  currentPins = 10;
+  currentPins = this.#maxPins;
 
   roll(number) {
     if (!Number.isInteger(number)) {
@@ -35,6 +37,9 @@ module.exports = class Game {
 
     if (this.#currentRoll === 2) {
       this.currentFrame++;
+      this.currentPins = this.#maxPins;
+    } else {
+      this.currentPins -= number;
     }
   }
 

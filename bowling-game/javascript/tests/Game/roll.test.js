@@ -44,6 +44,10 @@ describe("Game.roll should", () => {
     );
 
     expect(() => game.roll(11)).toThrow(expectedError);
+
+    game.roll(5);
+
+    expect(() => game.roll(6)).toThrow(expectedError);
   });
 
   test("should advance the frame after being called twice", () => {
@@ -63,5 +67,13 @@ describe("Game.roll should", () => {
     game.roll(5);
 
     expect(game.score()).toBe(5);
+  });
+
+  test("should decrease number of pins by argument value", () => {
+    const originalCurrentPins = game.currentPins;
+
+    game.roll(5);
+
+    expect(game.currentPins).toBe(originalCurrentPins - 5);
   });
 });
