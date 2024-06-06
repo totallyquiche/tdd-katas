@@ -1,7 +1,7 @@
-describe("Game should", () => {
+describe("Game.roll should", () => {
   const Game = require("../../Game");
 
-  test('have a method named "roll"', () => {
+  test("be a function", () => {
     const game = new Game();
 
     expect(game.roll).toBeInstanceOf(Function);
