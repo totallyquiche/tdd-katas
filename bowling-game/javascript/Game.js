@@ -1,5 +1,5 @@
 module.exports = class Game {
-  #score = [[0, 0]];
+  #score = [];
   #currentRoll = 0;
   currentFrame = 0;
 
@@ -18,6 +18,12 @@ module.exports = class Game {
       throw new Error("expected only one argument");
     }
 
+    if (this.#score.length < this.currentFrame + 1) {
+      this.#score.push([]);
+    }
+
+    this.#score[this.currentFrame].push(number);
+
     this.#currentRoll++;
 
     if (this.#currentRoll === 2) {
@@ -30,6 +36,6 @@ module.exports = class Game {
       throw new Error("expected no arguments but got at least one");
     }
 
-    return this.#score[0][0];
+    return this.#score.flat().reduce((a, b) => a + b, 0);
   }
 };

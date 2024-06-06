@@ -49,4 +49,11 @@ describe("Game.roll should", () => {
 
     expect(game.currentFrame).toBe(1);
   });
+
+  test("should increase score by argument value", () => {
+    game.roll(0);
+    game.roll(5);
+
+    expect(game.score()).toBe(5);
+  });
 });
