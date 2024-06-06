@@ -19,4 +19,10 @@ describe("Game.score should", () => {
   test("should return an integer", () => {
     expect(Number.isInteger(game.score())).toBe(true);
   });
+
+  test("should return the current score", () => {
+    game.roll(5);
+
+    expect(game.score()).toBe(5);
+  });
 });
