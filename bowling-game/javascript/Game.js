@@ -1,5 +1,5 @@
 module.exports = class Game {
-  #score = 0;
+  #score = [[0, 0]];
   #currentRoll = 0;
   currentFrame = 0;
 
@@ -24,6 +24,6 @@ module.exports = class Game {
       throw new Error("expected no arguments but got at least one");
     }
 
-    return this.#score;
+    return this.#score[0][0];
   }
 };
