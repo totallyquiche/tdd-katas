@@ -13,9 +13,7 @@ describe("Game.roll should", () => {
   test("only accepts one argument", () => {
     const expectedError = new Error("expected only one argument");
 
-    expect(() => {
-      game.roll(0, 1);
-    }).toThrow(expectedError);
+    expect(() => game.roll(0, 1)).toThrow(expectedError);
   });
 
   test("only accept an integer", () => {
@@ -26,9 +24,7 @@ describe("Game.roll should", () => {
     const invalidArguments = [null, 0.1, [], {}, ""];
 
     invalidArguments.forEach((argument) => {
-      expect(() => {
-        game.roll(argument);
-      }).toThrow(expectedError);
+      expect(() => game.roll(argument)).toThrow(expectedError);
     });
   });
 });
