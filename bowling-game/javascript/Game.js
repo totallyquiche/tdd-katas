@@ -1,9 +1,10 @@
 module.exports = class Game {
-  score = [];
   #currentRoll = 0;
+  #maxRolls = 2;
   #maxPins = 10;
 
-  currentFrame = 0;
+  score = [[]];
+  currentFrame = 1;
   currentPins = this.#maxPins;
 
   roll(number) {
@@ -27,29 +28,43 @@ module.exports = class Game {
       throw new Error("expected only one argument");
     }
 
-    if (this.score.length < this.currentFrame + 1) {
-      this.score.push([]);
+    this.#currentRoll++;
 
-      if (this.currentFrame > 0 && this.score[this.currentFrame - 1][0] < 10) {
-        if (
-          this.score[this.currentFrame - 1][0] +
-            this.score[this.currentFrame - 1][1] ===
-          10
-        ) {
-          this.score[this.currentFrame - 1].push(number);
-        }
-      }
+    const onNewFrame = this.#currentRoll === 1;
+
+    if (onNewFrame) {
+      this.score.push([]);
+    }
+
+    const onFirstFrame = this.currentFrame === 1;
+    const previousFrame = this.currentFrame - 1;
+    const strikeOnPreviousFrame =
+      !onFirstFrame && this.score[previousFrame][0] === this.#maxPins;
+    const spareOnPreviousFrame =
+      onNewFrame &&
+      !onFirstFrame &&
+      !strikeOnPreviousFrame &&
+      this.score[previousFrame][0] + this.score[previousFrame][1] ===
+        this.#maxPins;
+    const strikeOnCurrentFrame =
+      this.#currentRoll === 1 && number === this.#maxPins;
+
+    if (spareOnPreviousFrame) {
+      this.score[previousFrame].push(number);
+    }
+
+    if (strikeOnPreviousFrame) {
+      this.score[previousFrame].push(number);
     }
 
     this.score[this.currentFrame].push(number);
 
-    this.#currentRoll++;
+    this.currentPins -= number;
 
-    if (this.#currentRoll === 2 || number === this.#maxPins) {
+    if (this.#currentRoll === this.#maxRolls || strikeOnCurrentFrame) {
+      this.#currentRoll = 0;
       this.currentFrame++;
       this.currentPins = this.#maxPins;
-    } else {
-      this.currentPins -= number;
     }
   }
 

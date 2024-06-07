@@ -51,15 +51,15 @@ describe("Game.roll should", () => {
   });
 
   test("advance the frame after being called twice", () => {
-    expect(game.currentFrame).toBe(0);
-
-    game.roll(0);
-
-    expect(game.currentFrame).toBe(0);
+    expect(game.currentFrame).toBe(1);
 
     game.roll(0);
 
     expect(game.currentFrame).toBe(1);
+
+    game.roll(0);
+
+    expect(game.currentFrame).toBe(2);
   });
 
   test("increase score by argument value", () => {
@@ -95,5 +95,13 @@ describe("Game.roll should", () => {
     game.roll(10);
 
     expect(game.currentFrame).toBe(originalFrame + 1);
+  });
+
+  test("add a bonus for a strike", () => {
+    game.roll(10);
+    game.roll(1);
+    game.roll(2);
+
+    expect(game.getScore()).toBe(16);
   });
 });
