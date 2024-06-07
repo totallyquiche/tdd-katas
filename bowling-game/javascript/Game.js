@@ -57,6 +57,15 @@ module.exports = class Game {
       this.score[previousFrame].push(number);
     }
 
+    if (
+      this.#currentRoll === 1 &&
+      strikeOnPreviousFrame &&
+      this.currentFrame >= 3 &&
+      this.score[previousFrame - 1][0] === this.#maxPins
+    ) {
+      this.score[previousFrame - 1].push(number);
+    }
+
     this.score[this.currentFrame].push(number);
 
     this.currentPins -= number;

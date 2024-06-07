@@ -104,4 +104,22 @@ describe("Game.roll should", () => {
 
     expect(game.getScore()).toBe(16);
   });
+
+  test("test spare and strike combinations score correctly", () => {
+    game.roll(5);
+    game.roll(5);
+    game.roll(10);
+    game.roll(1);
+    game.roll(9);
+    game.roll(10);
+    game.roll(10);
+    game.roll(7);
+    game.roll(3);
+    game.roll(5);
+    game.roll(5);
+    game.roll(0);
+    game.roll(1);
+
+    expect(game.getScore()).toBe(133);
+  });
 });
