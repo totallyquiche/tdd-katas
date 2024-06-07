@@ -33,4 +33,12 @@ describe("Game.getScore should", () => {
 
     expect(game.getScore()).toBe(3);
   });
+
+  test("include spare bonuses in return value", () => {
+    game.roll(1);
+    game.roll(9);
+    game.roll(5);
+
+    expect(game.getScore()).toBe(20);
+  });
 });
