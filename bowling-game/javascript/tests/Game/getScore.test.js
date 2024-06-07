@@ -1,11 +1,11 @@
-describe("Game.score should", () => {
+describe("Game.getScore should", () => {
   const Game = require("../../Game");
   let game;
 
   beforeEach(() => (game = new Game()));
 
   test("be a function", () => {
-    expect(game.score).toBeInstanceOf(Function);
+    expect(game.getScore).toBeInstanceOf(Function);
   });
 
   test("not take any arguments", () => {
@@ -13,17 +13,17 @@ describe("Game.score should", () => {
       "expected no arguments but got at least one"
     );
 
-    expect(() => game.score(0)).toThrow(expectedError);
+    expect(() => game.getScore(0)).toThrow(expectedError);
   });
 
   test("return an integer", () => {
-    expect(Number.isInteger(game.score())).toBe(true);
+    expect(Number.isInteger(game.getScore())).toBe(true);
   });
 
   test("return the current score", () => {
     game.roll(5);
 
-    expect(game.score()).toBe(5);
+    expect(game.getScore()).toBe(5);
   });
 
   test("return the score across multiple frames", () => {
@@ -31,6 +31,6 @@ describe("Game.score should", () => {
     game.roll(1);
     game.roll(2);
 
-    expect(game.score()).toBe(3);
+    expect(game.getScore()).toBe(3);
   });
 });
