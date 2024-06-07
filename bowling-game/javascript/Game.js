@@ -29,6 +29,16 @@ module.exports = class Game {
 
     if (this.score.length < this.currentFrame + 1) {
       this.score.push([]);
+
+      if (this.currentFrame > 0 && this.score[this.currentFrame - 1][0] < 10) {
+        if (
+          this.score[this.currentFrame - 1][0] +
+            this.score[this.currentFrame - 1][1] ===
+          10
+        ) {
+          this.score[this.currentFrame - 1].push(number);
+        }
+      }
     }
 
     this.score[this.currentFrame].push(number);

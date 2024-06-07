@@ -66,7 +66,7 @@ describe("Game.roll should", () => {
     game.roll(0);
     game.roll(5);
 
-    expect(game.score()).toBe(5);
+    expect(game.getScore()).toBe(5);
   });
 
   test("decrease number of pins by argument value", () => {
@@ -75,5 +75,17 @@ describe("Game.roll should", () => {
     game.roll(5);
 
     expect(game.currentPins).toBe(originalCurrentPins - 5);
+  });
+
+  test("add a bonus for a spare", () => {
+    game.roll(5);
+    game.roll(5);
+    game.roll(5);
+
+    const previousFrameScore = game.score[game.currentFrame - 1].reduce(
+      (a, b) => a + b
+    );
+
+    expect(previousFrameScore).toBe(15);
   });
 });
