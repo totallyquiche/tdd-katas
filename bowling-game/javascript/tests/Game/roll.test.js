@@ -88,4 +88,12 @@ describe("Game.roll should", () => {
 
     expect(previousFrameScore).toBe(15);
   });
+
+  test("end the current frame with a strike", () => {
+    const originalFrame = game.currentFrame;
+
+    game.roll(10);
+
+    expect(game.currentFrame).toBe(originalFrame + 1);
+  });
 });

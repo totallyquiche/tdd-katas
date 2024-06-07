@@ -45,7 +45,7 @@ module.exports = class Game {
 
     this.#currentRoll++;
 
-    if (this.#currentRoll === 2) {
+    if (this.#currentRoll === 2 || number === this.#maxPins) {
       this.currentFrame++;
       this.currentPins = this.#maxPins;
     } else {
