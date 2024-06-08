@@ -2,8 +2,8 @@
 
 ## Overview
 
-This repo contains my attempts at various TDD katas, programming exercises
-intended to reinforce the skill of test-driven development through practice and
+This repo contains my implementations of various TDD katas, programming exercises
+intended to reinforce the skill of Test-Driven Development through practice and
 repetition.
 
 ## Katas
