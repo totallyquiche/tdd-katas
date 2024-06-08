@@ -1,5 +1,4 @@
 module.exports = class Game {
-  #maxFrames = 10;
   #rolls = [];
 
   roll(pins) {
@@ -7,32 +6,32 @@ module.exports = class Game {
   }
 
   score() {
+    const maxFrames = 10;
+    const maxPins = 10;
+
     let score = 0;
     let rollsIndex = 0;
-    let frameScore = 0;
 
-    for (let frameIndex = 0; frameIndex < this.#maxFrames; frameIndex++) {
+    for (let frameIndex = 0; frameIndex < maxFrames; frameIndex++) {
       const firstRoll = this.#rolls[rollsIndex] || 0;
       const secondRoll = this.#rolls[rollsIndex + 1] || 0;
       const thirdRoll = this.#rolls[rollsIndex + 2] || 0;
-      const strike = firstRoll === 10;
-      const spare = !strike && firstRoll + secondRoll === 10;
+      const didRollStrike = firstRoll === maxPins;
+      const didRollSpare = !didRollStrike && firstRoll + secondRoll === maxPins;
 
-      if (strike) {
-        frameScore = firstRoll + secondRoll + thirdRoll;
+      if (didRollStrike) {
+        score += firstRoll + secondRoll + thirdRoll;
       }
 
-      if (spare) {
-        frameScore = firstRoll + secondRoll + thirdRoll;
+      if (didRollSpare) {
+        score += firstRoll + secondRoll + thirdRoll;
       }
 
-      if (!strike && !spare) {
-        frameScore = firstRoll + secondRoll;
+      if (!didRollStrike && !didRollSpare) {
+        score += firstRoll + secondRoll;
       }
 
-      score += frameScore;
-
-      rollsIndex += strike ? 1 : 2;
+      rollsIndex += didRollStrike ? 1 : 2;
     }
 
     return score;
