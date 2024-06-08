@@ -38,4 +38,14 @@ describe("Game should", () => {
 
     expect(game.score()).toBe(16);
   });
+
+  test("calculate correct score for multiple strikes", () => {
+    game.roll(10);
+    game.roll(10);
+    game.roll(10);
+    game.roll(1);
+    game.roll(2);
+
+    expect(game.score()).toBe(67);
+  });
 });
