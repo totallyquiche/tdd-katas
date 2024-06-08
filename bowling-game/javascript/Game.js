@@ -2,10 +2,6 @@ module.exports = class Game {
   #maxFrames = 10;
   #rolls = [];
 
-  maxPins = 10;
-  maxRolls = 20;
-  maxStrikeRolls = 12;
-
   roll(pins) {
     this.#rolls.push(pins);
   }

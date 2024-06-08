@@ -8,7 +8,9 @@ describe("Game should", () => {
   });
 
   test("calculate correct score for all gutter balls", () => {
-    for (let i = 0; i < game.maxRolls; i++) {
+    const maxRolls = 20;
+
+    for (let i = 0; i < maxRolls; i++) {
       game.roll(0);
     }
 
@@ -16,7 +18,9 @@ describe("Game should", () => {
   });
 
   test("calculate correct score for all single-pin-rolls", () => {
-    for (let i = 0; i < game.maxRolls; i++) {
+    const maxRolls = 20;
+
+    for (let i = 0; i < maxRolls; i++) {
       game.roll(1);
     }
 
@@ -39,26 +43,25 @@ describe("Game should", () => {
     expect(game.score()).toBe(16);
   });
 
-  test("calculate correct score for multiple spares", () => {
-    game.roll(5);
-    game.roll(5);
-    game.roll(1);
-    game.roll(9);
-    game.roll(0);
-    game.roll(10);
-    game.roll(1);
-    game.roll(2);
+  test("calculate correct score for all spares", () => {
+    const maxRolls = 21;
 
-    expect(game.score()).toBe(35);
+    for (let i = 0; i < maxRolls; i++) {
+      const pins = i % 2 ? 1 : 9;
+
+      game.roll(pins);
+    }
+
+    expect(game.score()).toBe(190);
   });
 
-  test("calculate correct score for multiple strikes", () => {
-    game.roll(10);
-    game.roll(10);
-    game.roll(10);
-    game.roll(1);
-    game.roll(2);
+  test("calculate correct score for all strikes", () => {
+    const maxRolls = 12;
 
-    expect(game.score()).toBe(67);
+    for (let i = 0; i < maxRolls; i++) {
+      game.roll(10);
+    }
+
+    expect(game.score()).toBe(300);
   });
 });
