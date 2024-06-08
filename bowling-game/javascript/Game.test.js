@@ -39,6 +39,19 @@ describe("Game should", () => {
     expect(game.score()).toBe(16);
   });
 
+  test("calculate correct score for multiple spares", () => {
+    game.roll(5);
+    game.roll(5);
+    game.roll(1);
+    game.roll(9);
+    game.roll(0);
+    game.roll(10);
+    game.roll(1);
+    game.roll(2);
+
+    expect(game.score()).toBe(35);
+  });
+
   test("calculate correct score for multiple strikes", () => {
     game.roll(10);
     game.roll(10);
