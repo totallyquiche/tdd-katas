@@ -64,4 +64,12 @@ describe("Game should", () => {
 
     expect(game.score()).toBe(300);
   });
+
+  test("cannot roll more than the max number of pins", () => {
+    const expectedError = new RangeError(
+      "cannot roll more than the max number of pins"
+    );
+
+    expect(() => game.roll(11)).toThrow(expectedError);
+  });
 });
