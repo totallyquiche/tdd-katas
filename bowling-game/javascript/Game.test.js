@@ -1,7 +1,11 @@
 const Game = require("./Game");
 
 describe("Game should", () => {
-  const game = new Game();
+  let game;
+
+  beforeEach(() => {
+    game = new Game();
+  });
 
   test("calculate correct score for all gutter balls", () => {
     for (let i = 0; i < game.maxRolls; i++) {
@@ -17,5 +21,21 @@ describe("Game should", () => {
     }
 
     expect(game.score()).toBe(20);
+  });
+
+  test("calculate correct score for a spare", () => {
+    game.roll(1);
+    game.roll(9);
+    game.roll(5);
+
+    expect(game.score()).toBe(20);
+  });
+
+  test("calculate correct score for a strike", () => {
+    game.roll(10);
+    game.roll(1);
+    game.roll(2);
+
+    expect(game.score()).toBe(16);
   });
 });
