@@ -1,6 +1,7 @@
 module.exports = class Game {
   #maxPins = 10;
   #rolls = [];
+  #score = 0;
 
   roll(pins) {
     if (pins > this.#maxPins) {
@@ -8,10 +9,13 @@ module.exports = class Game {
     }
 
     this.#rolls.push(pins);
+
+    this.updateScore();
   }
 
-  score() {
+  updateScore() {
     const maxFrames = 10;
+
     let score = 0;
     let rollsIndex = 0;
 
@@ -23,21 +27,23 @@ module.exports = class Game {
       const didRollSpare =
         !didRollStrike && firstRoll + secondRoll === this.#maxPins;
 
-      if (didRollStrike) {
+      if (didRollStrike || didRollSpare) {
         score += firstRoll + secondRoll + thirdRoll;
-      }
-
-      if (didRollSpare) {
-        score += firstRoll + secondRoll + thirdRoll;
-      }
-
-      if (!didRollStrike && !didRollSpare) {
+      } else if (firstRoll + secondRoll > this.#maxPins) {
+        throw new RangeError(
+          "cannot roll more than the current number of pins"
+        );
+      } else {
         score += firstRoll + secondRoll;
       }
 
       rollsIndex += didRollStrike ? 1 : 2;
     }
 
-    return score;
+    this.#score = score;
+  }
+
+  score() {
+    return this.#score;
   }
 };

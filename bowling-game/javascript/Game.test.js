@@ -72,4 +72,14 @@ describe("Game should", () => {
 
     expect(() => game.roll(11)).toThrow(expectedError);
   });
+
+  test("cannot roll more than the current number of pins", () => {
+    const expectedError = new RangeError(
+      "cannot roll more than the current number of pins"
+    );
+
+    game.roll(5);
+
+    expect(() => game.roll(6)).toThrow(expectedError);
+  });
 });
