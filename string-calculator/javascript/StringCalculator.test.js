@@ -51,4 +51,10 @@ describe("StringCalculator should", () => {
 
     expect(() => stringCalculator.add("-1")).toThrow(expectedError);
   });
+
+  test("multiple negatives are showin in error", () => {
+    const expectedError = new RangeError("negatives not allowed: -1, -1");
+
+    expect(() => stringCalculator.add("-1,-1")).toThrow(expectedError);
+  });
 });

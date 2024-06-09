@@ -25,17 +25,26 @@ module.exports = class {
       numbers = parts;
     });
 
-    const reducer = (a, b) => {
-      const currentNumber = parseInt(a);
-      const previousNumber = parseInt(b);
+    const negatives = [];
 
-      if (currentNumber < 0 || previousNumber < 0) {
-        throw new RangeError("negatives not allowed");
+    let sum = 0;
+
+    numbers.forEach((number) => {
+      number = parseInt(number);
+
+      if (number < 0) {
+        negatives.push(number);
       }
 
-      return currentNumber + previousNumber;
-    };
+      sum += number;
+    });
 
-    return numbers.reduce(reducer, 0) || 0;
+    if (negatives.length === 1) {
+      throw new RangeError("negatives not allowed");
+    } else if (negatives.length) {
+      throw new RangeError("negatives not allowed: " + negatives.join(", "));
+    }
+
+    return sum || 0;
   }
 };
