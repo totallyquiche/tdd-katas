@@ -41,4 +41,8 @@ describe("StringCalculator should", () => {
   test("handle custom separator", () => {
     expect(stringCalculator.add("//;\n1;2")).toBe(3);
   });
+
+  test("handle newline, comma, and custom separators", () => {
+    expect(stringCalculator.add("//;\n1\n2,3;4")).toBe(10);
+  });
 });
