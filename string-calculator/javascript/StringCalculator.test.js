@@ -14,4 +14,19 @@ describe("StringCalculator should", () => {
   test("return the sum of two numbers", () => {
     expect(stringCalculator.add("1,2")).toBe(3);
   });
+
+  test("return the sum of an unknown number of numbers", () => {
+    const randomNumber = Math.floor(Math.random() * 100 + 1);
+
+    let numbers = [];
+
+    for (let i = 0; i < randomNumber; i++) {
+      numbers.push(i);
+    }
+
+    const sum = numbers.reduce((a, b) => a + b);
+    const numbersString = numbers.join(",");
+
+    expect(stringCalculator.add(numbersString)).toBe(sum);
+  });
 });
