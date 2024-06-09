@@ -1,5 +1,5 @@
 module.exports = class {
-  add() {
-    return 0;
+  add(numberString) {
+    return parseInt(numberString) || 0;
   }
 };
