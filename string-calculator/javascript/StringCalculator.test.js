@@ -10,4 +10,8 @@ describe("StringCalculator should", () => {
   test("return the number when given a single number", () => {
     expect(stringCalculator.add("1")).toBe(1);
   });
+
+  test("return the sum of two numbers", () => {
+    expect(stringCalculator.add("1,2")).toBe(3);
+  });
 });
