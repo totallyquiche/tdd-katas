@@ -45,4 +45,10 @@ describe("StringCalculator should", () => {
   test("handle newline, comma, and custom separators", () => {
     expect(stringCalculator.add("//;\n1\n2,3;4")).toBe(10);
   });
+
+  test("negative number throws error", () => {
+    const expectedError = new RangeError("negatives not allowed");
+
+    expect(() => stringCalculator.add("-1")).toThrow(expectedError);
+  });
 });

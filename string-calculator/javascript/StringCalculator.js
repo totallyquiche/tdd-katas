@@ -25,6 +25,17 @@ module.exports = class {
       numbers = parts;
     });
 
-    return numbers.reduce((a, b) => parseInt(a) + parseInt(b), 0) || 0;
+    const reducer = (a, b) => {
+      const currentNumber = parseInt(a);
+      const previousNumber = parseInt(b);
+
+      if (currentNumber < 0 || previousNumber < 0) {
+        throw new RangeError("negatives not allowed");
+      }
+
+      return currentNumber + previousNumber;
+    };
+
+    return numbers.reduce(reducer, 0) || 0;
   }
 };
