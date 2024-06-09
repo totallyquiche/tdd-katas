@@ -1,6 +1,20 @@
 module.exports = class {
-  add(numbersString) {
+  getCustomSeparator(numbersString) {
+    return numbersString.slice(2, numbersString.indexOf("\n"));
+  }
+
+  getSeparators(numbersString) {
     const separators = [",", "\n"];
+
+    if (numbersString.startsWith("//")) {
+      separators.push(this.getCustomSeparator(numbersString));
+    }
+
+    return separators;
+  }
+
+  add(numbersString) {
+    const separators = this.getSeparators(numbersString);
 
     if (numbersString.startsWith("//")) {
       const newlineIndex = numbersString.indexOf("\n");
