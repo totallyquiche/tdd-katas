@@ -29,4 +29,8 @@ describe("StringCalculator should", () => {
 
     expect(stringCalculator.add(numbersString)).toBe(sum);
   });
+
+  test("handle newline separators", () => {
+    expect(stringCalculator.add("1\n2")).toBe(3);
+  });
 });
