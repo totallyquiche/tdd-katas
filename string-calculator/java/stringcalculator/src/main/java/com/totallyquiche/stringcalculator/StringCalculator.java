@@ -5,8 +5,6 @@ import java.util.Arrays;
 
 public class StringCalculator
 {
-    class NegativeNumberException extends RuntimeException {}
-    
     public int Add(String numbers)
     {
         return this.AddNumbers(

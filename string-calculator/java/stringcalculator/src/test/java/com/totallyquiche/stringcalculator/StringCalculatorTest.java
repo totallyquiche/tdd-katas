@@ -49,8 +49,14 @@ public class StringCalculatorTest
         assertEquals(10, stringCalculator.Add("//%\n1%2\n3,4"));
     }
 
-    @Test(expected = StringCalculator.NegativeNumberException.class)
+    @Test(expected = NegativeNumberException.class)
     public void shouldThrowExceptionOnNegative() {
-        stringCalculator.Add("-1");
+        try {
+            stringCalculator.Add("-1");
+        } catch (Exception exception) {
+            assertEquals("negatives not allowed", exception.getMessage());
+
+            throw exception;
+        }
     }
 }
