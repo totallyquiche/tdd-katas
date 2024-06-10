@@ -24,9 +24,19 @@ describe("Stack", () => {
     expect(stack.isEmpty()).toBe(true);
   });
 
-  test("throws an error on pop when empty", () => {
+  test("throws an underflow error on pop when empty", () => {
     const expectedError = new Error("underflow error");
 
     expect(() => stack.pop()).toThrow(expectedError);
+  });
+
+  test("can return current size", () => {
+    const randomNumber = Math.floor(Math.random() * 100 + 1);
+
+    for (let i = 0; i < randomNumber; i++) {
+      stack.push(i);
+    }
+
+    expect(stack.size()).toBe(randomNumber);
   });
 });
