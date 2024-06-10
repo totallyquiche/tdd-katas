@@ -5,8 +5,8 @@ module.exports = class {
   _getSeparators(numbersString) {
     if (numbersString.startsWith("//")) {
       const customSeparator = numbersString.slice(
-        2,
-        numbersString.indexOf("\n")
+        3,
+        numbersString.indexOf("]")
       );
 
       this.#separators.push(customSeparator);

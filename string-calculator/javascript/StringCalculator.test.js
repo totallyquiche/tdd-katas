@@ -43,11 +43,11 @@ describe("StringCalculator", () => {
   });
 
   test(".add() handles custom separator", () => {
-    expect(stringCalculator.add("//;\n1;2")).toBe(3);
+    expect(stringCalculator.add("//[;]\n1;2")).toBe(3);
   });
 
   test(".add() handles newline, comma, and custom separators", () => {
-    expect(stringCalculator.add("//;\n1\n2,3;4")).toBe(10);
+    expect(stringCalculator.add("//[;]\n1\n2,3;4")).toBe(10);
   });
 
   test(".add() throws an error if a negative number is given", () => {
@@ -70,6 +70,12 @@ describe("StringCalculator", () => {
 
   test(".add() ignores numbers larger than 1000", () => {
     expect(stringCalculator.add("1,1000,1001")).toBe(1001);
+  });
+
+  test(".add() delimiters can be of any length", () => {
+    expect(stringCalculator.add("//[***]\n1***2")).toBe(3);
+    expect(stringCalculator.add("//[####]\n1####2")).toBe(3);
+    expect(stringCalculator.add("//[&&&&&]\n1&&&&&2,3")).toBe(6);
   });
 
   test(".getCalledCount() returns the number of times .add() has been invoked", () => {
