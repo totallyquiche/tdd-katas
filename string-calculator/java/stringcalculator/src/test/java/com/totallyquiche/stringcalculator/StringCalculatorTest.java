@@ -59,4 +59,20 @@ public class StringCalculatorTest
             throw exception;
         }
     }
+
+    @Test
+    public void shouldReportNumberOfAddInvocations() {
+        int randomNumber = (int) Math.floor(Math.random() * 100);
+
+        for (int i = 0; i < randomNumber; i++) {
+            stringCalculator.Add("");
+        }
+
+        assertEquals(randomNumber, stringCalculator.GetCalledCount());
+    }
+
+    @Test
+    public void numbersLargerThan1000AreIgnored() {
+        assertEquals(1001, stringCalculator.Add("1,1000,1001"));
+    }
 }

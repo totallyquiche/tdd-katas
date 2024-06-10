@@ -5,14 +5,22 @@ import java.util.Arrays;
 
 public class StringCalculator
 {
+    private int calledCount = 0;
+
     public int Add(String numbers)
     {
+        this.calledCount++;
+
         return this.AddNumbers(
             this.GetNumbersList(
                 this.GetSeparators(numbers),
                 numbers
             )
         );
+    }
+
+    public int GetCalledCount() {
+        return this.calledCount;
     }
 
     private ArrayList<String> GetSeparators(String numbers) {
@@ -58,6 +66,10 @@ public class StringCalculator
 
             if (integer < 0) {
                 negativeNumbers.add(number);
+            }
+
+            if (integer > 1000) {
+                continue;
             }
 
             sum += integer;
