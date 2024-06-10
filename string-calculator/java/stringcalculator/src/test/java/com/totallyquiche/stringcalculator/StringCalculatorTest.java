@@ -52,9 +52,9 @@ public class StringCalculatorTest
     @Test(expected = NegativeNumberException.class)
     public void shouldThrowExceptionOnNegative() {
         try {
-            stringCalculator.Add("-1");
+            stringCalculator.Add("-1,2,-3");
         } catch (Exception exception) {
-            assertEquals("negatives not allowed: -1", exception.getMessage());
+            assertEquals("negatives not allowed: -1, -3", exception.getMessage());
 
             throw exception;
         }

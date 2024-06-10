@@ -51,15 +51,20 @@ public class StringCalculator
 
     private int AddNumbers(ArrayList<String> numbersList) {
         int sum = 0;
+        ArrayList<String> negativeNumbers = new ArrayList<>();
 
         for (String number : numbersList) {
             int integer = number.isBlank() ? 0 : Integer.parseInt(number);
 
             if (integer < 0) {
-                throw new NegativeNumberException(number);
+                negativeNumbers.add(number);
             }
 
             sum += integer;
+        }
+
+        if (!negativeNumbers.isEmpty()) {
+            throw new NegativeNumberException(negativeNumbers);
         }
 
         return sum;
