@@ -17,4 +17,9 @@ public class StringCalculatorTest
     public void shouldReturnNumberWhenGivenSingleNumber() {
         assertEquals(0, stringCalculator.Add("0"));
     }
+
+    @Test
+    public void shouldReturnSumOfTwoNumbers() {
+        assertEquals(3, stringCalculator.Add("1,2"));
+    }
 }
