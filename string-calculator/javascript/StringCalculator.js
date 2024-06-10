@@ -4,12 +4,14 @@ module.exports = class {
 
   _getSeparators(numbersString) {
     if (numbersString.startsWith("//")) {
-      const customSeparator = numbersString.slice(
-        3,
-        numbersString.indexOf("]")
+      const separatorString = numbersString.slice(
+        2,
+        numbersString.indexOf("\n")
       );
 
-      this.#separators.push(customSeparator);
+      separatorString.matchAll(/\[(.*?)\]/g).forEach((match) => {
+        this.#separators.push(match[1]);
+      });
     }
 
     return this.#separators;

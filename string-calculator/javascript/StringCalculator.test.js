@@ -72,10 +72,15 @@ describe("StringCalculator", () => {
     expect(stringCalculator.add("1,1000,1001")).toBe(1001);
   });
 
-  test(".add() delimiters can be of any length", () => {
+  test(".add() handles delimiters of any length", () => {
     expect(stringCalculator.add("//[***]\n1***2")).toBe(3);
     expect(stringCalculator.add("//[####]\n1####2")).toBe(3);
-    expect(stringCalculator.add("//[&&&&&]\n1&&&&&2,3")).toBe(6);
+    expect(stringCalculator.add("//[&&&&&]\n1&&&&&2,3\n4")).toBe(10);
+  });
+
+  test(".add() handles multiple customer delimiters", () => {
+    expect(stringCalculator.add("//[*][#]\n1*2#3")).toBe(6);
+    expect(stringCalculator.add("//[*][#]\n1*2#3,4\n5")).toBe(15);
   });
 
   test(".getCalledCount() returns the number of times .add() has been invoked", () => {
