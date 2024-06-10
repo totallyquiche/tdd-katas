@@ -1,21 +1,25 @@
 const StringCalculator = require("./StringCalculator");
 
 describe("StringCalculator", () => {
-  const stringCalculator = new StringCalculator();
+  let stringCalculator;
 
-  test("returns 0 when given an empty string", () => {
+  beforeEach(() => {
+    stringCalculator = new StringCalculator();
+  });
+
+  test(".add() returns 0 when given an empty string", () => {
     expect(stringCalculator.add("")).toBe(0);
   });
 
-  test("returns the number when given a single number", () => {
+  test(".add() returns the number when given a single number", () => {
     expect(stringCalculator.add("1")).toBe(1);
   });
 
-  test("returns the sum of two numbers", () => {
+  test(".add() returns the sum of two numbers", () => {
     expect(stringCalculator.add("1,2")).toBe(3);
   });
 
-  test("returns the sum of an unknown number of numbers", () => {
+  test(".add() returns the sum of an unknown number of numbers", () => {
     const randomNumber = Math.floor(Math.random() * 100 + 1);
 
     let numbers = [];
@@ -30,37 +34,47 @@ describe("StringCalculator", () => {
     expect(stringCalculator.add(numbersString)).toBe(sum);
   });
 
-  test("handles newline separators", () => {
+  test(".add() handles newline separators", () => {
     expect(stringCalculator.add("1\n2")).toBe(3);
   });
 
-  test("handles newline and comma separators", () => {
+  test(".add() handles newline and comma separators", () => {
     expect(stringCalculator.add("1\n2,3")).toBe(6);
   });
 
-  test("handles custom separator", () => {
+  test(".add() handles custom separator", () => {
     expect(stringCalculator.add("//;\n1;2")).toBe(3);
   });
 
-  test("handles newline, comma, and custom separators", () => {
+  test(".add() handles newline, comma, and custom separators", () => {
     expect(stringCalculator.add("//;\n1\n2,3;4")).toBe(10);
   });
 
-  test("throws an error if a negative number is given", () => {
+  test(".add() throws an error if a negative number is given", () => {
     const expectedError = new RangeError("negatives not allowed");
 
     expect(() => stringCalculator.add("-1")).toThrow(expectedError);
   });
 
-  test("shows the negatives in the error when multiple negatives are given", () => {
+  test(".add() shows the negatives in the error when multiple negatives are given", () => {
     const expectedError = new RangeError("negatives not allowed: -1, -1");
 
     expect(() => stringCalculator.add("-1,-1")).toThrow(expectedError);
   });
 
-  test("shows only the negatives in the error", () => {
+  test(".add() shows only the negatives in the error", () => {
     const expectedError = new RangeError("negatives not allowed: -1, -3");
 
     expect(() => stringCalculator.add("-1,2,-3")).toThrow(expectedError);
+  });
+
+  test(".getCalledCount() returns the number of times .add() has been invoked", () => {
+    const randomNumber = Math.floor(Math.random() * 100 + 1);
+
+    for (let i = 0; i < randomNumber; i++) {
+      stringCalculator.add("");
+    }
+
+    expect(stringCalculator.getCalledCount()).toBe(randomNumber);
   });
 });

@@ -1,5 +1,6 @@
 module.exports = class {
   #separators = [",", "\n"];
+  #calledCount = 0;
 
   _getSeparators(numbersString) {
     if (numbersString.startsWith("//")) {
@@ -72,6 +73,12 @@ module.exports = class {
 
     this._checkForNegatives(numbers);
 
+    this.#calledCount++;
+
     return this._calculateSum(numbers);
+  }
+
+  getCalledCount() {
+    return this.#calledCount;
   }
 };
