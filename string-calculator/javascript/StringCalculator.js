@@ -62,6 +62,12 @@ module.exports = class {
     let sum = 0;
 
     numbers.forEach((number) => {
+      number = parseInt(number);
+
+      if (number > 1000) {
+        return;
+      }
+
       sum += parseInt(number);
     });
 

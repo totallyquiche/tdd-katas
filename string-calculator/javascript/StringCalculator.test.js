@@ -68,6 +68,10 @@ describe("StringCalculator", () => {
     expect(() => stringCalculator.add("-1,2,-3")).toThrow(expectedError);
   });
 
+  test(".add() ignores numbers larger than 1000", () => {
+    expect(stringCalculator.add("1,1000,1001")).toBe(1001);
+  });
+
   test(".getCalledCount() returns the number of times .add() has been invoked", () => {
     const randomNumber = Math.floor(Math.random() * 100 + 1);
 
