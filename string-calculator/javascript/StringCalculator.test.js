@@ -57,4 +57,10 @@ describe("StringCalculator", () => {
 
     expect(() => stringCalculator.add("-1,-1")).toThrow(expectedError);
   });
+
+  it("shows only the negatives in the error", () => {
+    const expectedError = new RangeError("negatives not allowed: -1, -3");
+
+    expect(() => stringCalculator.add("-1,2,-3")).toThrow(expectedError);
+  });
 });
