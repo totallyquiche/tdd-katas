@@ -1,35 +1,32 @@
 module.exports = class {
-  getCustomSeparator(numbersString) {
-    return numbersString.slice(2, numbersString.indexOf("\n"));
-  }
+  #separators = [",", "\n"];
 
-  getSeparators(numbersString) {
-    const separators = [",", "\n"];
-
+  _getSeparators(numbersString) {
     if (numbersString.startsWith("//")) {
-      separators.push(this.getCustomSeparator(numbersString));
+      const customSeparator = numbersString.slice(
+        2,
+        numbersString.indexOf("\n")
+      );
+
+      this.#separators.push(customSeparator);
     }
 
-    return separators;
+    return this.#separators;
   }
 
-  add(numbersString) {
-    const separators = this.getSeparators(numbersString);
+  _getNumbers(numbersString) {
+    const separators = this._getSeparators(numbersString);
 
-    if (numbersString.startsWith("//")) {
-      const newlineIndex = numbersString.indexOf("\n");
-
-      separators.push(numbersString.slice(2, newlineIndex));
-
+    if (this.#separators.length > 2) {
       numbersString = numbersString.slice(
-        newlineIndex + 1,
+        numbersString.indexOf("\n") + 1,
         numbersString.length
       );
     }
 
     let numbers = [numbersString];
 
-    separators.forEach((separator) => {
+    this.#separators.forEach((separator) => {
       let parts = [];
 
       numbers.forEach((number) => {
@@ -39,9 +36,11 @@ module.exports = class {
       numbers = parts;
     });
 
-    const negatives = [];
+    return numbers;
+  }
 
-    let sum = 0;
+  _checkForNegatives(numbers) {
+    const negatives = [];
 
     numbers.forEach((number) => {
       number = parseInt(number);
@@ -49,8 +48,6 @@ module.exports = class {
       if (number < 0) {
         negatives.push(number);
       }
-
-      sum += number;
     });
 
     if (negatives.length === 1) {
@@ -58,7 +55,23 @@ module.exports = class {
     } else if (negatives.length) {
       throw new RangeError("negatives not allowed: " + negatives.join(", "));
     }
+  }
+
+  _calculateSum(numbers) {
+    let sum = 0;
+
+    numbers.forEach((number) => {
+      sum += parseInt(number);
+    });
 
     return sum || 0;
+  }
+
+  add(numbersString) {
+    const numbers = this._getNumbers(numbersString);
+
+    this._checkForNegatives(numbers);
+
+    return this._calculateSum(numbers);
   }
 };
