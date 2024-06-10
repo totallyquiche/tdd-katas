@@ -59,4 +59,11 @@ describe("Stack", () => {
 
     expect(() => stack.peek()).toThrow(expectedError);
   });
+
+  test("peeks the last element pushed", () => {
+    stack.push(1);
+    stack.push(2);
+
+    expect(stack.peek()).toBe(2);
+  });
 });

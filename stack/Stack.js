@@ -38,5 +38,7 @@ module.exports = class {
     if (this.isEmpty()) {
       throw new Error("underflow error");
     }
+
+    return this.#elements[this.#elements.length - 1];
   }
 };
