@@ -33,4 +33,10 @@ module.exports = class {
 
     return poppedElement;
   }
+
+  peek() {
+    if (this.isEmpty()) {
+      throw new Error("underflow error");
+    }
+  }
 };

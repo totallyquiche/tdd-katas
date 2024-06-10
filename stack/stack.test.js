@@ -47,10 +47,16 @@ describe("Stack", () => {
     expect(() => stack.push(0)).toThrow(expectedError);
   });
 
-  test("pop returns last element pushed", () => {
+  test("returns last element pushed", () => {
     stack.push(1);
     stack.push(2);
 
     expect(stack.pop()).toBe(2);
+  });
+
+  test("throws an underflow error when peeking an empty stack", () => {
+    const expectedError = new Error("underflow error");
+
+    expect(() => stack.peek()).toThrow(expectedError);
   });
 });
