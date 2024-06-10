@@ -39,4 +39,11 @@ describe("Stack", () => {
 
     expect(stack.size()).toBe(randomNumber);
   });
+
+  test("throws an overflow error when too many elements are pushed", () => {
+    const expectedError = new Error("overflow error");
+    const stack = new Stack(0);
+
+    expect(() => stack.push(0)).toThrow(expectedError);
+  });
 });
