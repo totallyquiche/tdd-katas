@@ -5,9 +5,9 @@ public class StringCalculator
     public int Add(String numbers)
     {
         int sum = 0;
-        
+ 
         for (String number : numbers.split(",")) {
-            sum += Integer.parseInt(number);
+            sum += number.equals("") ? 0 : Integer.parseInt(number);
         }
 
         return sum;
