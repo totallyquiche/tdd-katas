@@ -19,7 +19,7 @@ module.exports = class {
       throw new Error("overflow error");
     }
 
-    this.#elements.push(element);
+    this.#elements[this.#elements.length] = element;
   }
 
   pop() {
@@ -27,6 +27,6 @@ module.exports = class {
       throw new Error("underflow error");
     }
 
-    this.#elements.pop();
+    this.#elements = this.#elements.slice(1, this.#elements.length);
   }
 };
