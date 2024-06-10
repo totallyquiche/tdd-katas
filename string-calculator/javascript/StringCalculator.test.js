@@ -46,13 +46,13 @@ describe("StringCalculator should", () => {
     expect(stringCalculator.add("//;\n1\n2,3;4")).toBe(10);
   });
 
-  test("negative number throws error", () => {
+  test("throw an error if a negative number is given", () => {
     const expectedError = new RangeError("negatives not allowed");
 
     expect(() => stringCalculator.add("-1")).toThrow(expectedError);
   });
 
-  test("multiple negatives are showin in error", () => {
+  test("show the negatives in the error when multiple negatives are given", () => {
     const expectedError = new RangeError("negatives not allowed: -1, -1");
 
     expect(() => stringCalculator.add("-1,-1")).toThrow(expectedError);
