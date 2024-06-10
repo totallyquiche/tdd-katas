@@ -10,5 +10,10 @@
   "description": "",
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true
   }
 }
