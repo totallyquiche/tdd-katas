@@ -23,7 +23,6 @@ Tests a bowling game module which allows for rolling the ball and getting the cu
 
 ### Stack ([source](https://www.codurance.com/katas/stack))
 
-Tests a `stack` data structure (last-in-first-out) without using built-in langauge
-methods for typical stack behavior (e.g. `push`, `pop`).
+Tests a `stack` data structure (last-in-first-out). The class methods do not rely on built-in langauge methods for typical stack behavior (e.g. `push`, `pop`).
 
 * [JavaScript solution](./stack/javascript)
