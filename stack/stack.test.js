@@ -47,6 +47,12 @@ describe("Stack", () => {
     expect(() => stack.push(0)).toThrow(expectedError);
   });
 
+  test("throws range error on invalid stack size", () => {
+    const expectedError = new RangeError("invalid stack size");
+
+    expect(() => new Stack(-1)).toThrow(expectedError);
+  });
+
   test("returns last element pushed", () => {
     stack.push(1);
     stack.push(2);

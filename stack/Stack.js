@@ -3,6 +3,10 @@ module.exports = class {
   #elements = [];
 
   constructor(maxSize) {
+    if (maxSize < 0) {
+      throw new RangeError("invalid stack size");
+    }
+
     this.#maxSize = maxSize;
   }
 
