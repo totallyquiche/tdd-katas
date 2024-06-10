@@ -8,4 +8,8 @@ module.exports = class {
   push(element) {
     this.#empty = false;
   }
+
+  pop() {
+    this.#empty = true;
+  }
 };
