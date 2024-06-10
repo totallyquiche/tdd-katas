@@ -1,6 +1,5 @@
 module.exports = class {
   #maxSize;
-  #empty = true;
   #elements = [];
 
   constructor(maxSize) {
@@ -8,7 +7,7 @@ module.exports = class {
   }
 
   isEmpty() {
-    return this.#empty;
+    return this.size() === 0;
   }
 
   size() {
@@ -21,15 +20,13 @@ module.exports = class {
     }
 
     this.#elements.push(element);
-
-    this.#empty = false;
   }
 
   pop() {
-    if (this.#empty) {
+    if (this.isEmpty()) {
       throw new Error("underflow error");
     }
 
-    this.#empty = true;
+    this.#elements.pop();
   }
 };
