@@ -36,4 +36,10 @@ public class StringCalculatorTest
 
         assertEquals(expectedSum, stringCalculator.Add(numbers));
     }
+
+    @Test
+    public void shouldAllowNewlineSeparators() {
+        assertEquals(3, stringCalculator.Add("1\n2"));
+        assertEquals(6, stringCalculator.Add("1\n2,3"));
+    }
 }
