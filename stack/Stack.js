@@ -1,10 +1,14 @@
-module.exports = class {
+class Stack {
   #maxSize;
   #elements = [];
 
   constructor(maxSize) {
     if (maxSize < 0) {
       throw new RangeError("invalid stack size");
+    }
+
+    if (maxSize === 0) {
+      return new NullStack();
     }
 
     this.#maxSize = maxSize;
@@ -45,4 +49,28 @@ module.exports = class {
 
     return this.#elements[this.#elements.length - 1];
   }
-};
+}
+
+class NullStack extends Stack {
+  isEmpty() {
+    return true;
+  }
+
+  size() {
+    return 0;
+  }
+
+  push(element) {
+    throw new Error("overflow error");
+  }
+
+  pop() {
+    throw new Error("underflow error");
+  }
+
+  peek() {
+    throw new Error("underflow error");
+  }
+}
+
+module.exports = Stack;
