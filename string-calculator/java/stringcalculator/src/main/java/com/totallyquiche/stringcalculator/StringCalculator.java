@@ -56,7 +56,7 @@ public class StringCalculator
             int integer = number.isBlank() ? 0 : Integer.parseInt(number);
 
             if (integer < 0) {
-                throw new NegativeNumberException();
+                throw new NegativeNumberException(number);
             }
 
             sum += integer;

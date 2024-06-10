@@ -54,7 +54,7 @@ public class StringCalculatorTest
         try {
             stringCalculator.Add("-1");
         } catch (Exception exception) {
-            assertEquals("negatives not allowed", exception.getMessage());
+            assertEquals("negatives not allowed: -1", exception.getMessage());
 
             throw exception;
         }
