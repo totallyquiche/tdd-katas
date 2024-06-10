@@ -45,8 +45,8 @@ public class StringCalculatorTest
 
     @Test
     public void shouldAllowCustomSeparators() {
-        assertEquals(3, stringCalculator.Add("//;\n1;2"));
-        assertEquals(10, stringCalculator.Add("//%\n1%2\n3,4"));
+        assertEquals(3, stringCalculator.Add("//[;]\n1;2"));
+        assertEquals(10, stringCalculator.Add("//[%]\n1%2\n3,4"));
     }
 
     @Test(expected = NegativeNumberException.class)
@@ -74,5 +74,10 @@ public class StringCalculatorTest
     @Test
     public void numbersLargerThan1000AreIgnored() {
         assertEquals(1001, stringCalculator.Add("1,1000,1001"));
+    }
+
+    @Test
+    public void shouldAllowSeparatorsOfAnyLength() {
+        assertEquals(3, stringCalculator.Add("//[***]\n1***2"));
     }
 }

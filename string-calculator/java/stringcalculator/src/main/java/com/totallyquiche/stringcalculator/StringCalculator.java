@@ -2,6 +2,7 @@ package com.totallyquiche.stringcalculator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class StringCalculator
 {
@@ -27,7 +28,7 @@ public class StringCalculator
         ArrayList<String> separators = new ArrayList<>(Arrays.asList(",", "\n"));
 
         if (numbers.startsWith("//")) {
-            String separator = numbers.substring(2, numbers.indexOf("\n"));
+            String separator = numbers.substring(3, numbers.indexOf("\n") - 1);
 
             separators.add(separator);
         }
@@ -37,7 +38,7 @@ public class StringCalculator
 
     private String GetNumbersString(String numbers) {
         return numbers.startsWith("//") ?
-            numbers.substring(3, numbers.length()) :
+            numbers.substring(numbers.indexOf("\n"), numbers.length()) :
             numbers;
     }
 
@@ -48,7 +49,7 @@ public class StringCalculator
             ArrayList<String> newNumbersList = new ArrayList<>();
 
             for (String number : numbersList) {
-                newNumbersList.addAll(Arrays.asList(number.split(separator)));
+                newNumbersList.addAll(Arrays.asList(number.split(Pattern.quote(separator))));
             }
 
             numbersList = newNumbersList;
