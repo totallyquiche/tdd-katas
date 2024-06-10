@@ -23,4 +23,10 @@ describe("Stack", () => {
 
     expect(stack.isEmpty()).toBe(true);
   });
+
+  test("throws an error on pop when empty", () => {
+    const expectedError = new Error("underflow error");
+
+    expect(() => stack.pop()).toThrow(expectedError);
+  });
 });

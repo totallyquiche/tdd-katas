@@ -10,6 +10,9 @@ module.exports = class {
   }
 
   pop() {
+    if (this.#empty) {
+      throw new Error("underflow error");
+    }
     this.#empty = true;
   }
 };
