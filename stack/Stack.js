@@ -27,6 +27,10 @@ module.exports = class {
       throw new Error("underflow error");
     }
 
+    const poppedElement = this.#elements[this.#elements.length - 1];
+
     this.#elements = this.#elements.slice(1, this.#elements.length);
+
+    return poppedElement;
   }
 };

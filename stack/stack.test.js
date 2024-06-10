@@ -46,4 +46,11 @@ describe("Stack", () => {
 
     expect(() => stack.push(0)).toThrow(expectedError);
   });
+
+  test("pop returns last element pushed", () => {
+    stack.push(1);
+    stack.push(2);
+
+    expect(stack.pop()).toBe(2);
+  });
 });
