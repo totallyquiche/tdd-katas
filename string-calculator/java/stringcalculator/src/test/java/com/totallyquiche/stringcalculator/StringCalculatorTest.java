@@ -5,11 +5,16 @@ import org.junit.Test;
 
 public class StringCalculatorTest 
 {
+    StringCalculator stringCalculator = new StringCalculator();
+
     @Test
     public void shouldReturn0WhenGivenEmptyString()
     {
-        StringCalculator stringCalculator = new StringCalculator();
-
         assertEquals(0, stringCalculator.Add(""));
+    }
+
+    @Test
+    public void shouldReturnNumberWhenGivenSingleNumber() {
+        assertEquals(0, stringCalculator.Add("0"));
     }
 }
