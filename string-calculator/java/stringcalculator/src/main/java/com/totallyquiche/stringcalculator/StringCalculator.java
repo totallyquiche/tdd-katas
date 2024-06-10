@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 public class StringCalculator
 {
+    class NegativeNumberException extends RuntimeException {}
+    
     public int Add(String numbers)
     {
         return this.AddNumbers(
@@ -53,7 +55,13 @@ public class StringCalculator
         int sum = 0;
 
         for (String number : numbersList) {
-            sum += number.isBlank() ? 0 : Integer.parseInt(number);
+            int integer = number.isBlank() ? 0 : Integer.parseInt(number);
+
+            if (integer < 0) {
+                throw new NegativeNumberException();
+            }
+
+            sum += integer;
         }
 
         return sum;

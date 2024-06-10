@@ -48,4 +48,9 @@ public class StringCalculatorTest
         assertEquals(3, stringCalculator.Add("//;\n1;2"));
         assertEquals(10, stringCalculator.Add("//%\n1%2\n3,4"));
     }
+
+    @Test(expected = StringCalculator.NegativeNumberException.class)
+    public void shouldThrowExceptionOnNegative() {
+        stringCalculator.Add("-1");
+    }
 }
