@@ -20,3 +20,11 @@ deliminated string.
 Tests a bowling game module which allows for rolling the ball and getting the current score.
 
 * [JavaScript solution](./bowling-game/javascript)
+
+
+### Stack ([source](https://www.codurance.com/katas/stack))
+
+Tests a `stack` data structure (last-in-first-out) without using built-in langauge
+methods for typical stack behavior (e.g. `push`, `pop`).
+
+* [JavaScript solution](./stack/javascript)
