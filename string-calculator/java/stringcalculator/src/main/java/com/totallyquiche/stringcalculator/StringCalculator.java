@@ -7,7 +7,12 @@ public class StringCalculator
 {
     public int Add(String numbers)
     {
-        return this.AddNumbers(numbers);
+        return this.AddNumbers(
+            this.GetNumbersList(
+                this.GetSeparators(numbers),
+                numbers
+            )
+        );
     }
 
     private ArrayList<String> GetSeparators(String numbers) {
@@ -28,8 +33,7 @@ public class StringCalculator
             numbers;
     }
 
-    private ArrayList<String> GetNumbersList(String numbers) {
-        ArrayList<String> separators = this.GetSeparators(numbers);
+    private ArrayList<String> GetNumbersList(ArrayList<String> separators, String numbers) {
         ArrayList<String> numbersList = new ArrayList<>(Arrays.asList(this.GetNumbersString(numbers)));
 
         for (String separator : separators) {
@@ -45,9 +49,7 @@ public class StringCalculator
         return numbersList;
     }
 
-    private int AddNumbers(String numbers) {
-        ArrayList<String> numbersList = this.GetNumbersList(numbers);
-
+    private int AddNumbers(ArrayList<String> numbersList) {
         int sum = 0;
 
         for (String number : numbersList) {
