@@ -2,6 +2,7 @@ package com.totallyquiche.stringcalculator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator
@@ -28,9 +29,12 @@ public class StringCalculator
         ArrayList<String> separators = new ArrayList<>(Arrays.asList(",", "\n"));
 
         if (numbers.startsWith("//")) {
-            String separator = numbers.substring(3, numbers.indexOf("\n") - 1);
+            String separatorsString = numbers.substring(2, numbers.indexOf("\n"));
+            Matcher matcher = Pattern.compile("\\[(.*?)\\]").matcher(separatorsString);
 
-            separators.add(separator);
+            while (matcher.find()) {
+                separators.add(matcher.group(1));
+            }
         }
 
         return separators;

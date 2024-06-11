@@ -80,4 +80,9 @@ public class StringCalculatorTest
     public void shouldAllowSeparatorsOfAnyLength() {
         assertEquals(3, stringCalculator.Add("//[***]\n1***2"));
     }
+
+    @Test
+    public void shouldAllowMultipleCustomSeparators() {
+        assertEquals(21, stringCalculator.Add("//[*][##][@@@]\n1*2##3@@@4,5\n6"));
+    }
 }
