@@ -14,8 +14,8 @@ public class StringCalculator
         this.calledCount++;
 
         return this.AddNumbers(
-            this.GetNumbersList(
-                this.GetSeparators(numbers),
+            this.GetNumbers(
+                this.GetSeparators(this.GetSeparatorsString(numbers)),
                 numbers
             )
         );
@@ -25,11 +25,10 @@ public class StringCalculator
         return this.calledCount;
     }
 
-    private ArrayList<String> GetSeparators(String numbers) {
+    private ArrayList<String> GetSeparators(String separatorsString) {
         ArrayList<String> separators = new ArrayList<>(Arrays.asList(",", "\n"));
 
-        if (numbers.startsWith("//")) {
-            String separatorsString = numbers.substring(2, numbers.indexOf("\n"));
+        if (!separatorsString.isBlank()) {
             Matcher matcher = Pattern.compile("\\[(.*?)\\]").matcher(separatorsString);
 
             while (matcher.find()) {
@@ -40,13 +39,23 @@ public class StringCalculator
         return separators;
     }
 
+    private String GetSeparatorsString(String numbers) {
+        return this.HasCustomSeparators(numbers) ?
+            numbers.substring(2, numbers.indexOf("\n")) :
+            "";
+    }
+
     private String GetNumbersString(String numbers) {
-        return numbers.startsWith("//") ?
+        return this.HasCustomSeparators(numbers) ?
             numbers.substring(numbers.indexOf("\n"), numbers.length()) :
             numbers;
     }
 
-    private ArrayList<String> GetNumbersList(ArrayList<String> separators, String numbers) {
+    private Boolean HasCustomSeparators(String numbers) {
+        return numbers.startsWith("//");
+    }
+
+    private ArrayList<String> GetNumbers(ArrayList<String> separators, String numbers) {
         ArrayList<String> numbersList = new ArrayList<>(Arrays.asList(this.GetNumbersString(numbers)));
 
         for (String separator : separators) {
